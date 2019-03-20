@@ -68,11 +68,11 @@
       <div class="table">
         <table border="1">
           <tr>
-            <th @click="sortName">Name</th>
-            <th @click="sortAge">Age</th>
-            <th @click="sortGender">Gender</th>
-            <th @click="sortDepartment">Department</th>
-            <th @click="sortAddress">Address</th>
+            <th @click="sortName" class="click-me">Name</th>
+            <th @click="sortAge" class="click-me">Age</th>
+            <th @click="sortGender" class="click-me">Gender</th>
+            <th @click="sortDepartment" class="click-me">Department</th>
+            <th @click="sortAddress" class="click-me">Address</th>
           </tr>
           <tr
             v-for="people in peoplesFilter"
@@ -372,5 +372,9 @@ export default {
   }
   table{
     width: 100%;
+  }
+  .click-me{
+    background-color: #91a0ff;
+    cursor: pointer;
   }
 </style>
