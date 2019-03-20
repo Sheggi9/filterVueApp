@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/pages/Home'
+import Titles from '@/pages/Titles'
 import Table from '@/pages/Table'
 
 Vue.use(Router)
@@ -9,13 +9,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
+      name: 'Table',
+      component: Table
     },
     {
-      path: '/table',
-      name: 'table',
-      component: Table
+      path: '/titles',
+      name: 'titles',
+      component: Titles
     }
   ],
   mode: 'history'
