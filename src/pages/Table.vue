@@ -2,6 +2,7 @@
   <main-layout>
   <div id="app">
     <router-view/>
+    <h1>{{test}}</h1>
     <div class="main-class">
       <div class="filter">
         <div class="filter__block">
@@ -93,13 +94,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import MainLayout from '@/layout/MainLayout'
 export default {
   name: 'Sheggi',
   components: {MainLayout},
   data () {
     return {
-      peoples: [],
+      // peoples: [],
       peoplesFilter: [],
       gender: [],
       department: [],
@@ -121,6 +123,10 @@ export default {
     }
   },
   computed: {
+    ...mapGetters([
+      'peoples',
+      'test'
+    ])
   },
   methods: {
     filterMale () {
@@ -324,18 +330,30 @@ export default {
       } else if (this.numbAddress % 2 === 0) {
         this.peoplesFilter.sort((a, b) => (b.address.city > a.address.city) ? 1 : (a.address.city > b.address.city) ? -1 : 0)
       }
+    },
+    qwe (e) {
+      console.log(e)
+      this.$store.commit('famell')
+      setTimeout(() => {
+        this.filterMale()
+      }, 1000)
     }
   },
   created () {
-    fetch('https://gist.githubusercontent.com/bunopus/f48fbb06578003fb521c7c1a54fd906a/raw/e5767c1e7f172c6375f064a9441f2edd57a79f15/test_users.json')
-      .then(response => response.json())
-      .then(response => {
-        console.log(response)
-        for (let i = 0; i < response.length; i++) {
-          this.peoples.push(response[i])
-        }
-      })
+    // fetch('https://gist.githubusercontent.com/bunopus/f48fbb06578003fb521c7c1a54fd906a/raw/e5767c1e7f172c6375f064a9441f2edd57a79f15/test_users.json')
+    //   .then(response => response.json())
+    //   .then(response => {
+    //     console.log(response)
+    //     for (let i = 0; i < response.length; i++) {
+    //       this.peoples.push(response[i])
+    //     }
+    //   })
+    //   .then(() => this.filterMale())
+    this.$store.dispatch('loadServer')
       .then(() => this.filterMale())
+      .catch(() => { alert('Error') })
+    // this.$store.dispatch('test2')
+    // this.filterMale()
   }
 }
 </script>
